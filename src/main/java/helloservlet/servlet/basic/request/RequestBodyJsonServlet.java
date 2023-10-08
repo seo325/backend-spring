@@ -28,5 +28,15 @@ public class RequestBodyJsonServlet extends HttpServlet {
         System.out.println("helloData = " + helloData.getUsername());
         System.out.println("helloData = " + helloData.getAge());
 
+        response.setHeader("content-type", "application/json");
+        response.setCharacterEncoding("utf-8");
+
+        HelloData data = new HelloData();
+        data.setUsername(helloData.getUsername());
+        data.setAge(helloData.getAge());
+
+        String result = objectMapper.writeValueAsString(data);
+        response.getWriter().write(result);
+
     }
 }
